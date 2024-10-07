@@ -1,0 +1,1 @@
+<a href="index.php?c=balance&a=edit&id=<?php echo $id; ?>">Edit</a>

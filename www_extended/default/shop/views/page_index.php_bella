@@ -1,0 +1,102 @@
+       
+<div class="row">
+    <div class="col-sm-6 col-md-3">
+        <div class="thumbnail">
+            <img src="www/gallery/img/shop/orders.jpg" alt="...">
+            <div class="caption">
+                <h3><?php _t("Orders"); ?></h3>
+                <p>...</p>
+                <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-6 col-md-3">
+        <div class="thumbnail">
+            <img src="www/gallery/img/shop/contacts.jpg" alt="...">
+            <div class="caption">
+                <h3><?php _t("Contacts"); ?></h3>
+                <p>Mis contactos</p>
+
+
+
+
+
+                <form action="index.php" method="" class="form-inline">
+                    <input type="hidden" name="c" value="shop">
+                    <input type="hidden" name="a" value="contacts_search">
+                    <input type="hidden" name="formId" value="nav">
+
+
+
+                    <div class="form-group">
+                        <input 
+                            name="txt" 
+                            type="search" 
+                            class="form-control" 
+                            placeholder="<?php _t("Search") ; ?>" 
+                            autofocus>
+                    </div>
+
+
+                <?php /*
+                  <div class="form-group">
+                  <select name="txt"  class="selectpicker" data-live-search="true">
+                  <?php
+                  foreach (shop_labo_patients_list() as $key => $patients_list) {
+                  echo "<option value=\"$patients_list[contact_id]\">$patients_list[contact_id] ". contacts_formated($patients_list[contact_id])."</option>";
+                  }
+                  ?>
+                  </select>
+                  </div>
+                 * 
+                 * 
+                 * */ ?>
+
+
+
+                </form>
+
+
+                <p></p>
+
+
+                <p>
+                    <a href="#" class="btn btn-primary" role="button"><?php _t("New"); ?></a> 
+                    <a href="#" class="btn btn-default" role="button">Button</a>
+                </p>
+
+
+            </div>
+        </div>
+    </div>
+
+
+    <div class="col-sm-6 col-md-3">
+        <div class="thumbnail">
+            <img src="www/gallery/img/shop/offices.jpg" alt="...">
+            <div class="caption">
+                <h3><?php _t("Offices"); ?></h3>
+                <p>...</p>
+                <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="col-sm-6 col-md-3">
+        <div class="thumbnail">
+            <img src="www/gallery/img/shop/myinfo.jpg" alt="...">
+            <div class="caption">
+                <h3><?php _t("My info"); ?></h3>
+                <p>...</p>
+                <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+            </div>
+        </div>
+    </div>
+
+
+
+
+</div>

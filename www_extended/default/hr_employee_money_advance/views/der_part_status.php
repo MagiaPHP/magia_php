@@ -1,0 +1,1 @@
+der_part_status

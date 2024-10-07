@@ -1,0 +1,163 @@
+<?php 
+#   __  __             _         _____  _    _ _____  
+#  |  \/  |           (_)       |  __ \| |  | |  __ \ 
+#  | \  / | __ _  __ _ _  __ _  | |__) | |__| | |__) |
+#  | |\/| |/ _` |/ _` | |/ _` | |  ___/|  __  |  ___/ 
+#  | |  | | (_| | (_| | | (_| | | |    | |  | | |     
+#  |_|  |_|\__,_|\__, |_|\__,_| |_|    |_|  |_|_|     
+#                 __/ |                         
+#                |___/             
+# 
+# 
+# Documento creado con mago de Magia_PHP 
+# http://magiaphp.com 
+# Fecha de creacion del documento: 2024-09-04 08:09:28 
+#################################################################################
+?>
+<form class="form-horizontal" action="index.php" method="post" >
+    <input type="hidden" name="c" value="expenses_lines">
+    <input type="hidden" name="a" value="ok_delete">
+    <input type="hidden" name="id" value="<?php echo $expenses_lines->getId(); ?>">
+
+    <input type="hidden" name="redi[redi]" value="<?php echo $arg["redi"]; ?>">    
+    <input type="hidden" name="redi[c]" value="<?php echo (isset($arg["c"])) ? $arg["c"] : ""; ?>">
+    <input type="hidden" name="redi[a]" value="<?php echo (isset($arg["a"])) ? $arg["a"] : ""; ?>">
+    <input type="hidden" name="redi[params]" value="<?php echo isset($arg["params"]) ? $arg["params"] : ""; ?>">
+
+        <?php # expense_id ?>
+    <div class="form-group">
+        <label class="control-label col-sm-3" for="expense_id"><?php _t("Expense_id"); ?></label>
+        <div class="col-sm-8">
+               <select name="expense_id" class="form-control selectpicker" id="expense_id" data-live-search="true"  disabled="" >
+                    
+                <?php 
+                // 1 param : value 
+                // 2 param : array() values from table to show like label 
+                // 3 param : value selected by default
+                // 4 param : array() values disabled     
+
+                expenses_select("id", array("id"), $expenses_lines->getExpense_id() , array()); ?>                        
+                </select>
+        </div>	
+    </div>
+    <?php # /expense_id ?>
+
+    <?php # budget_id ?>
+    <div class="form-group">
+        <label class="control-label col-sm-3" for="budget_id"><?php _t("Budget_id"); ?></label>
+        <div class="col-sm-8">
+            <input type="number" step="any" name="budget_id" class="form-control" id="budget_id" placeholder="budget_id"   value="<?php echo $expenses_lines->getBudget_id(); ?>"  disabled="" >
+        </div>	
+    </div>
+    <?php # /budget_id ?>
+
+    <?php # category_code ?>
+    <div class="form-group">
+        <label class="control-label col-sm-3" for="category_code"><?php _t("Category_code"); ?></label>
+        <div class="col-sm-8">
+               <select name="category_code" class="form-control selectpicker" id="category_code" data-live-search="true"  disabled="" >
+                    
+                <?php 
+                // 1 param : value 
+                // 2 param : array() values from table to show like label 
+                // 3 param : value selected by default
+                // 4 param : array() values disabled     
+
+                expenses_categories_select("code", array("code"), $expenses_lines->getCategory_code() , array()); ?>                        
+                </select>
+        </div>	
+    </div>
+    <?php # /category_code ?>
+
+    <?php # code ?>
+    <div class="form-group">
+        <label class="control-label col-sm-3" for="code"><?php _t("Code"); ?></label>
+        <div class="col-sm-8">
+            <input type="text" name="code" class="form-control" id="code" placeholder="code"  value="<?php echo $expenses_lines->getCode(); ?>"  disabled="" >
+        </div>	
+    </div>
+    <?php # /code ?>
+
+    <?php # quantity ?>
+    <div class="form-group">
+        <label class="control-label col-sm-3" for="quantity"><?php _t("Quantity"); ?></label>
+        <div class="col-sm-8">
+            <input type="number" step="any" name="quantity" class="form-control" id="quantity" placeholder="quantity"   value="<?php echo $expenses_lines->getQuantity(); ?>"  disabled="" >
+        </div>	
+    </div>
+    <?php # /quantity ?>
+
+    <?php # description ?>
+    <div class="form-group">
+        <label class="control-label col-sm-3" for="description"><?php _t("Description"); ?></label>
+        <div class="col-sm-8">
+            <input type="text" name="description" class="form-control" id="description" placeholder="description"  value="<?php echo $expenses_lines->getDescription(); ?>"  disabled="" >
+        </div>	
+    </div>
+    <?php # /description ?>
+
+    <?php # price ?>
+    <div class="form-group">
+        <label class="control-label col-sm-3" for="price"><?php _t("Price"); ?></label>
+        <div class="col-sm-8">
+            <input type="number" step="any" name="price" class="form-control" id="price" placeholder="price"   value="<?php echo $expenses_lines->getPrice(); ?>"  disabled="" >
+        </div>	
+    </div>
+    <?php # /price ?>
+
+    <?php # discounts ?>
+    <div class="form-group">
+        <label class="control-label col-sm-3" for="discounts"><?php _t("Discounts"); ?></label>
+        <div class="col-sm-8">
+            <input type="number" step="any" name="discounts" class="form-control" id="discounts" placeholder="discounts"   value="<?php echo $expenses_lines->getDiscounts(); ?>"  disabled="" >
+        </div>	
+    </div>
+    <?php # /discounts ?>
+
+    <?php # discounts_mode ?>
+    <div class="form-group">
+        <label class="control-label col-sm-3" for="discounts_mode"><?php _t("Discounts_mode"); ?></label>
+        <div class="col-sm-8">
+            <input type="text" name="discounts_mode" class="form-control" id="discounts_mode" placeholder="discounts_mode"  value="<?php echo $expenses_lines->getDiscounts_mode(); ?>"  disabled="" >
+        </div>	
+    </div>
+    <?php # /discounts_mode ?>
+
+    <?php # tax ?>
+    <div class="form-group">
+        <label class="control-label col-sm-3" for="tax"><?php _t("Tax"); ?></label>
+        <div class="col-sm-8">
+            <input type="number" step="any" name="tax" class="form-control" id="tax" placeholder="tax"   value="<?php echo $expenses_lines->getTax(); ?>"  disabled="" >
+        </div>	
+    </div>
+    <?php # /tax ?>
+
+    <?php # order_by ?>
+    <div class="form-group">
+        <label class="control-label col-sm-3" for="order_by"><?php _t("Order_by"); ?></label>
+        <div class="col-sm-8">
+            <input type="number" step="any" name="order_by" class="form-control" id="order_by" placeholder="order_by"   value="<?php echo $expenses_lines->getOrder_by(); ?>"  disabled="" >
+        </div>	
+    </div>
+    <?php # /order_by ?>
+
+    <?php # status ?>
+    <div class="form-group">
+        <label class="control-label col-sm-3" for="status"><?php _t("Status"); ?></label>
+        <div class="col-sm-8">
+            <input type="number" step="any" name="status" class="form-control" id="status" placeholder="status"   value="<?php echo $expenses_lines->getStatus(); ?>"  disabled="" >
+        </div>	
+    </div>
+    <?php # /status ?>
+
+
+
+    <div class="form-group">
+        <label class="control-label col-sm-3" for=""></label>
+        <div class="col-sm-8">    
+            <input class="btn btn-danger active" type ="submit" value ="<?php _t("Delete"); ?>">
+        </div>      							
+    </div>      							
+
+</form>
+

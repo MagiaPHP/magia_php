@@ -1,0 +1,1 @@
+ALTER TABLE `docu` ADD `bloc` VARCHAR(50) NULL DEFAULT NULL AFTER `language`; 

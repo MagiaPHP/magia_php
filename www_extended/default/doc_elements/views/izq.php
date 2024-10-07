@@ -1,0 +1,1 @@
+<?php include view("doc_sections", "izq"); ?>

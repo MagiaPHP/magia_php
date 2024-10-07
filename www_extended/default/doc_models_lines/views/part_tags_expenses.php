@@ -1,0 +1,1 @@
+<h3><?php _t("Expenses"); ?></h3>

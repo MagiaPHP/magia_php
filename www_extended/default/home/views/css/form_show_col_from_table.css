@@ -1,0 +1,45 @@
+/*
+*/
+/* 
+    Created on : Sep 13, 2024, 9:11:14 AM
+    Author     : robin
+*/
+
+    #column-list {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        width: 100%;
+    }
+
+    #column-list li {
+        display: flex; /* Flexbox para alinear elementos */
+        justify-content: space-between; /* Espaciado entre los elementos del contenido del li */
+        align-items: center; /* Alinear verticalmente */
+        margin: 5px 0;
+        padding: 10px;
+        background-color: #f1f1f1;
+        border: 1px solid #ccc;
+        cursor: move;
+    }
+
+    #column-list li .left-content {
+        display: flex; /* Alineación del checkbox y texto */
+        align-items: center; /* Alineación vertical */
+    }
+
+    #column-list li .left-content input[type="checkbox"] {
+        margin-right: 10px; /* Espacio entre checkbox y texto */
+    }
+
+    .placeholder {
+        border: 2px dashed #007bff;
+        background-color: #f0f8ff;
+        height: 40px; /* Altura del placeholder, puede ajustarse */
+        margin: 5px 0;
+        box-sizing: border-box;
+    }
+
+    .remove-column {
+        margin-left: 20px; /* Espacio entre el texto y el botón */
+    }

@@ -1,0 +1,56 @@
+<?php
+
+//include view("doc_models" , "budget") ;
+
+include pdf_template("budget") ;
+
+
+// Instanciation de la classe dérivée
+$pdf = new BUDGET() ;
+$pdf->SetTitle("Coello.be") ;
+$pdf->SetAuthor("Robinson Coello <info@coello.be>") ;
+$pdf->SetCreator("Coello.be") ;
+$pdf->SetKeywords("Coello.be") ;
+$pdf->SetSubject("Budget") ;
+// para definir el idioma
+$pdf->setLang($lang);
+$pdf->setCell_selected($cell_selected); 
+
+//
+$pdf->AliasNbPages() ;
+
+$pdf->AddPage() ;
+$pdf->doc_title(_trc("Budget") . ': ' . $id);
+$pdf->addresses($addresses_billing , $addresses_delivery); 
+$pdf->Ln(); 
+$pdf->body($budget); 
+$pdf->Ln();
+$pdf->body_transport($budget); 
+$pdf->Ln();
+
+$pdf->tax($budget); 
+//$pdf->signatures(); 
+
+switch ( $way ) {
+    case "pdf":
+        $pdf->Output("Budget_$id" . ".pdf" , "D") ;
+        break ;
+
+    case "web":
+        $pdf->Output("Budget_$id" . ".pdf" , "I") ;
+        break ;
+
+    case "email":                        
+
+        $email_Subject = "$config_company_name Budget" ;
+        $email_Body = $message ;
+        $email_AltBody = '$email_AltBody' ;
+        include controller("emails", "send_email_file");        
+        break ;
+
+
+    default:
+        $pdf->Output("Budget_$id" . ".pdf" , "I") ;
+        break ;
+}
+

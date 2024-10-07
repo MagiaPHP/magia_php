@@ -1,0 +1,33 @@
+<?php
+
+header('Content-Type: text/csv; charset=utf-8');
+header('Content-Disposition: attachment; filename=csv_export.csv');
+
+$output = fopen('php://output', 'w');
+
+$header_args = array(
+    'Credit note id',
+    'Invoice id',
+    'Client number',
+    'Client name',
+    'Client vat',
+    'Addresses billing',
+    'Addresses delivery',
+    'Date registre',
+    'Total',
+    'Tax',
+    'Returned',
+    'Comments',
+    'Code',
+    'Status code',
+    'Status'
+);
+
+fputcsv($output, $header_args);
+
+foreach ($lignes AS $data_item) {
+    fputcsv($output, $data_item);
+}
+exit;
+
+ob_end_clean();

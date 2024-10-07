@@ -1,0 +1,26 @@
+.btn-copy{
+    background-color:#3cc0ba;
+    color: #FFF;
+    border-radius: 20px;
+    border: 0px;
+    width: 30px;
+    height: 30px;
+}
+
+
+.location-r{
+    position: relative;
+    right: 124px;
+    top: 0px;
+    float: right;
+}
+.location-l{
+    position: relative;
+    right: 130px;
+    top: 2px;
+    float: right;
+}
+select
+{
+    width:80% !important;
+}

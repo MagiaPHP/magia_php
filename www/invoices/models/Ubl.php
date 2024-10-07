@@ -1,0 +1,59 @@
+<?php
+
+class Ubl extends Invoices {
+
+    public $_Invoice;
+    public $_UBLVersionID;
+    public $_CustomizationID;
+    public $_ProfileID;
+    public $_ProfileExecutionID;
+    public $_ID;
+    public $_CopyIndicator;
+    public $_UUID;
+    public $_IssueDate;
+    public $_IssueTime;
+    public $_DueDate;
+    public $_InvoiceTypeCode;
+    public $_Note;
+    public $_TaxPointDate;
+    public $_DocumentCurrencyCode;
+    public $_TaxCurrencyCode;
+    public $_PricingCurrencyCode;
+    public $_PaymentCurrencyCode;
+    public $_PaymentAlternativeCurrencyCode;
+    public $_AccountingCostCode;
+    public $_AccountingCost;
+    public $_LineCountNumeric;
+    public $_BuyerReference;
+    public $_InvoicePeriod;
+    public $_OrderReference;
+    public $_BillingReference;
+    public $_DespatchDocumentReference;
+    public $_ReceiptDocumentReference;
+    public $_StatementDocumentReference;
+    public $_OriginatorDocumentReference;
+    public $_ContractDocumentReference;
+    public $_AdditionalDocumentReference;
+    public $_ProjectReference;
+    public $_Signature;
+    public $_AccountingSupplierParty;
+    public $_AccountingCustomerParty;
+    public $_PayeeParty;
+    public $_BuyerCustomerParty;
+    public $_SellerSupplierParty;
+    public $_TaxRepresentativeParty;
+    public $_Delivery;
+    public $_DeliveryTerms;
+    public $_PaymentMeans;
+    public $_PaymentTerms;
+    public $_PrepaidPayment;
+    public $_AllowanceCharge;
+    public $_TaxExchangeRate;
+    public $_PricingExchangeRate;
+    public $_PaymentExchangeRate;
+    public $_PaymentAlternativeExchangeRate;
+    public $_TaxTotal;
+    public $_WithholdingTaxTotal;
+    public $_LegalMonetaryTotal;
+    public $_InvoiceLine;
+}

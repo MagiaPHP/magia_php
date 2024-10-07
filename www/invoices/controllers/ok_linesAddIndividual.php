@@ -1,0 +1,167 @@
+<?php
+
+if (!permissions_has_permission($u_rol, $c, "create")) {
+    header("Location: index.php?c=home&a=no_access");
+    die("Error has permission ");
+}
+//vardump($_POST['tax']); 
+//die(); 
+
+$invoice_id = (isset($_POST["invoice_id"])) ? clean($_POST["invoice_id"]) : false;
+$code = (isset($_POST["code"])) ? clean($_POST["code"]) : null;
+$quantity = (($_POST["quantity"]) != "") ? clean($_POST["quantity"]) : 1;
+$description = (($_POST["description"]) != "") ? clean($_POST["description"]) : 'Item';
+$price = (($_POST["price"]) != '') ? clean($_POST["price"]) : 0.0;
+$discounts = (($_POST["discounts"]) != "" ) ? clean($_POST["discounts"]) : 0;
+$discounts_mode = (($_POST["discounts_mode"]) != "" ) ? clean($_POST["discounts_mode"]) : null;
+$tax = ( isset($_POST["tax"]) && $_POST["tax"] != '' ) ? clean($_POST["tax"]) : null;
+$order_by = invoice_lines_next_order_by($invoice_id) ?? 1;
+$status = (isset($_POST["status"]) ) ? clean($_POST["status"]) : 1;
+// Factura mensual no normail
+$type = "I"; // Mensual M, N, normal
+// redirection
+$redi = (isset($_POST["redi"]) ) ? clean($_POST["redi"]) : null;
+
+$error = array();
+
+if (!$invoice_id) {
+    array_push($error, '$invoice_id is mandatory');
+}
+if (!$quantity) {
+    array_push($error, '$quantity- is mandatory');
+}
+if (!$description) {
+    array_push($error, '$description is mandatory');
+}
+//if (!$price) {
+//    //array_push($error, '$price is mandatory');
+//}
+//if (!$discounts) {
+//    // array_push($error, '$discounts is mandatory');
+//}
+//if (!$tax) {
+//    //array_push($error, '$tax is mandatory');
+//}
+if (!$order_by) {
+    array_push($error, '$order_by is mandatory');
+}
+if (!$status) {
+    array_push($error, '$status is mandatory');
+}
+#************************************************************************
+#************************************************************************
+# PROCESO
+# El descuento no puede sobrepasar el limite superior fijado 
+if ($discounts < 0) {
+    array_push($error, 'The discount must be positive');
+}
+// el descuento no puede ser superior al limite fijado como maximo para los clientes 
+
+if ($discounts > _options_option("config_discounts_max_to_customer") && $discounts_mode == '%') {
+    array_push($error, 'The discount cannot exceed the limit autorized');
+}
+# 
+# # si hay descuento, el descuento mode hay 
+//$discounts_mode = ( $discounts > 0)? $discounts_mode : null;  
+#************************************************************************
+// Busca si uya existe el texto en la BD
+//if (invoice_lines_search($status)) {
+//    //array_push($error, "That text with that context the database already exists");
+//}
+// Paso a valores positivos 
+// Paso a valores positivos 
+// Paso a valores positivos 
+// Paso a valores positivos 
+if ($quantity) {
+    $quantity = abs($quantity);
+}
+if ($price) {
+    $price = abs($price);
+}
+if ($discounts) {
+    $discounts = abs($discounts);
+}
+if ($tax) {
+    $tax = abs($tax);
+}
+if ($discounts_mode != "%" && $discounts > ($price * $quantity)) {
+    array_push($error, 'The discount cannot exceed the price');
+}
+
+if ($discounts_mode == "%" && $discounts > 100) {
+    array_push($error, 'The discount cannot exceed 100%');
+}
+################################################################################
+# Si el cliente esta fuera de Belgica, 
+# no se cobra el iva
+// Paginade configuracion indivicual
+if (!$config_invoices_company_outside_pay_tax) {
+    // si no paga se pone a cero los impuestos
+    if (addresses_field_id('country', addresses_billing_by_contact_id(invoices_field_id('client_id', $invoice_id))['id']) != "BE") {
+        $tax = 0;
+    }
+}
+#
+#
+#
+################################################################################
+
+if (!$error) {
+
+    invoice_lines_add(
+            $invoice_id, $code, $quantity, $description, $price, $discounts, $discounts_mode, $tax, $order_by, $status
+    );
+
+    ############################################################################
+    ############################################################################
+    ############################################################################
+    $id = $invoice_id;
+
+    $level = null;
+    $date = null;
+    //$u_id
+    //$u_rol , 
+    //$c , $a , 
+    $w = null;
+    $description = "Add item line to invoice: $id <br>Line: [Code: $code, Quantity: $quantity, Description: $description, Price: $price, Discounts: $discounts, Discounts_mode: $discounts_mode]";
+    $doc_id = $id;
+    $crud = "update";
+    $error = null;
+    $val_get = ( isset($_GET) ) ? json_encode($_GET) : null;
+    $val_post = ( isset($_POST) ) ? json_encode($_POST) : null;
+    $val_request = ( isset($_REQUEST) ) ? json_encode($_REQUEST) : null;
+    $ip4 = get_user_ip();
+    $ip6 = get_user_ip6();
+    $broswer = json_encode(get_user_browser()); //https://www.php.net/manual/es/function.get-browser.php
+
+    logs_add(
+            $level, $date, $u_id, $u_rol, $c, $a, $w,
+            $description, $doc_id, $crud, $error,
+            $val_get, $val_post, $val_request, $ip4, $ip6, $broswer
+    );
+    ############################################################################
+    ############################################################################
+    ############################################################################        
+
+
+    invoices_update_type($invoice_id, $type); // Normal o ensual
+//    vardump(invoice_lines_totalHTVA($invoice_id)); 
+//    vardump(invoice_lines_totalTVA($invoice_id)); 
+//    die(); 
+    // Esto me actualiza los totales en la factura
+    invoices_update_total_tax($invoice_id, invoice_lines_totalHTVA($invoice_id), invoice_lines_totalTVA($invoice_id));
+
+    // redirection 
+    switch ($redi) {
+        case 1:
+            header("Location: index.php?c=invoices&a=edit&id=$invoice_id#items_add");
+            break;
+
+        default:
+            header("Location: index.php?c=invoices&a=edit&id=$invoice_id#items_add");
+            break;
+    }
+} else {
+
+    include view("home", "pageError");
+}

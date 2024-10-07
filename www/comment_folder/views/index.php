@@ -1,0 +1,40 @@
+<?php include view("home", "header"); ?>  
+
+<div class="row">
+    <div class="col-sm-12 col-md-2 col-lg-2">
+        <?php include view("comment_folder", "izq"); ?>
+    </div>
+
+    <div class="col-sm-12 col-md-10 col-lg-10">
+        <?php include view("comment_folder", "nav"); ?>
+
+
+        <?php
+        if ($_REQUEST) {
+            foreach ($error as $key => $value) {
+                message("info", "$value");
+            }
+        }
+        ?>
+
+
+
+        <?php
+// https://api.jquery.com/prop/
+        ?><?php include view("comment_folder", "table_index"); ?>
+
+
+        <?php
+        /*
+          Export:
+          <a href="index.php?c=addresses&a=export_json">JSON</a>
+          <a href="index.php?c=addresses&a=export_pdf">pdf</a>
+         */
+        ?>
+
+
+    </div>
+</div>
+
+<?php include view("home", "footer"); ?> 
+

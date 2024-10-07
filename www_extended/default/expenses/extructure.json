@@ -1,0 +1,202 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Example Schema",
+    "type": "object",
+    "properties": {
+        "id": {
+            "type": "integer",
+            "description": "Unique identifier for the item"
+        },
+        "my_ref": {
+            "type": "string",
+            "description": "Reference number for internal use"
+        },
+        "father_id": {
+            "type": ["integer", "null"],
+            "description": "Identifier of the parent item, if any"
+        },
+        "category_code": {
+            "type": "string",
+            "description": "Code for the category of the item"
+        },
+        "invoice_number": {
+            "type": "string",
+            "description": "Invoice number associated with the item"
+        },
+        "budget_id": {
+            "type": ["integer", "null"],
+            "description": "Identifier of the budget associated with the item, if any"
+        },
+        "credit_note_id": {
+            "type": ["integer", "null"],
+            "description": "Identifier of the credit note associated with the item, if any"
+        },
+        "provider_id": {
+            "type": "integer",
+            "description": "Identifier of the provider"
+        },
+        "seller_id": {
+            "type": ["integer", "null"],
+            "description": "Identifier of the seller, if any"
+        },
+        "clon_from_id": {
+            "type": ["integer", "null"],
+            "description": "Identifier of the item this item was cloned from, if any"
+        },
+        "title": {
+            "type": ["string", "null"],
+            "description": "Title of the item"
+        },
+        "addresses_billing": {
+            "type": ["string", "null"],
+            "description": "Billing address"
+        },
+        "addresses_delivery": {
+            "type": ["string", "null"],
+            "description": "Delivery address"
+        },
+        "date": {
+            "type": "string",
+            "format": "date",
+            "description": "Date of the item"
+        },
+        "date_registre": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Date and time the item was registered"
+        },
+        "deadline": {
+            "type": "string",
+            "format": "date",
+            "description": "Deadline for the item"
+        },
+        "total": {
+            "type": "number",
+            "description": "Total amount"
+        },
+        "tax": {
+            "type": "number",
+            "description": "Tax amount"
+        },
+        "advance": {
+            "type": ["number", "null"],
+            "description": "Advance payment, if any"
+        },
+        "balance": {
+            "type": ["number", "null"],
+            "description": "Balance amount"
+        },
+        "comments": {
+            "type": ["string", "null"],
+            "description": "Comments"
+        },
+        "comments_private": {
+            "type": ["string", "null"],
+            "description": "Private comments"
+        },
+        "r1": {
+            "type": ["string", "null"],
+            "description": "Reserved field 1"
+        },
+        "r2": {
+            "type": ["string", "null"],
+            "description": "Reserved field 2"
+        },
+        "r3": {
+            "type": ["string", "null"],
+            "description": "Reserved field 3"
+        },
+        "fc": {
+            "type": ["string", "null"],
+            "description": "FC field"
+        },
+        "date_update": {
+            "type": ["string", "null"],
+            "format": "date-time",
+            "description": "Date and time the item was last updated"
+        },
+        "days": {
+            "type": ["integer", "null"],
+            "description": "Number of days"
+        },
+        "ce": {
+            "type": ["string", "null"],
+            "description": "CE field"
+        },
+        "code": {
+            "type": "string",
+            "description": "Unique code for the item"
+        },
+        "type": {
+            "type": ["string", "null"],
+            "description": "Type of the item"
+        },
+        "every": {
+            "type": ["integer", "null"],
+            "description": "Repetition interval"
+        },
+        "times": {
+            "type": ["integer", "null"],
+            "description": "Number of times"
+        },
+        "date_start": {
+            "type": ["string", "null"],
+            "format": "date",
+            "description": "Start date"
+        },
+        "date_end": {
+            "type": ["string", "null"],
+            "format": "date",
+            "description": "End date"
+        },
+        "order_by": {
+            "type": "integer",
+            "description": "Order by field"
+        },
+        "status": {
+            "type": "integer",
+            "description": "Status of the item"
+        },
+        "lines": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "expense_id": {
+                        "type": "integer",
+                        "description": "Identifier of the expense"
+                    },
+                    "quantity": {
+                        "type": "number",
+                        "description": "Quantity of the item"
+                    },
+                    "description": {
+                        "type": "string",
+                        "description": "Description of the item"
+                    },
+                    "price": {
+                        "type": "number",
+                        "description": "Price of the item"
+                    },
+                    "discounts": {
+                        "type": "number",
+                        "description": "Discount amount"
+                    },
+                    "discounts_mode": {
+                        "type": "string",
+                        "description": "Discount mode, e.g., percentage or fixed"
+                    },
+                    "tax": {
+                        "type": "int",
+                        "description": "Tax amount"
+                    }
+                }
+            }
+        }
+    },
+    "required": [
+        "id", "my_ref", "category_code", "invoice_number", 
+        "provider_id", "date", "date_registre", "deadline", 
+        "total", "tax", "order_by", "status"
+    ]
+}

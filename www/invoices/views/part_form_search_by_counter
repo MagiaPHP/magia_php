@@ -1,0 +1,9 @@
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <?php _menu_icon("top", "invoices"); ?>
+        <?php echo _t("Search by counter"); ?>
+    </div>
+    <div class="panel-body">
+        <?php include "form_search_by_counter.php"; ?>
+    </div>
+</div>

@@ -1,0 +1,141 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Factuz expenses",
+    "type": "object",
+    "properties": {
+        "id": {
+            "type": "integer",
+            "description": "Unique identifier for the item"
+        },
+        "my_ref": {
+            "type": "string",
+            "description": "Reference number for internal use, generaly is the file name)"
+        },
+        "invoice_number": {
+            "type": "string",
+            "description": "Provider invoice number associated with the item"
+        },
+        "budget_id": {
+            "type": ["integer", "null"],
+            "description": "Identifier of the budget associated with the item, if any"
+        },
+        "credit_note_id": {
+            "type": ["integer", "null"],
+            "description": "Identifier of the credit note associated with the item, if any"
+        },
+        "provider": {
+            "type": "integer",
+            "description": "Identifier of the provider"
+        },
+        "seller_id": {
+            "type": ["integer", "null"],
+            "description": "Identifier of the seller, if any"
+        },
+        "clon_from_id": {
+            "type": ["integer", "null"],
+            "description": "Identifier of the item this item was cloned from, if any"
+        },
+        "title": {
+            "type": ["string", "null"],
+            "description": "Title of the item"
+        },
+        "addresses_billing": {
+            "type": ["string", "null"],
+            "description": "Reciver billing address "
+        },
+        "addresses_delivery": {
+            "type": ["string", "null"],
+            "description": "Reciver delivery address"
+        },
+        "date": {
+            "type": "string",
+            "format": "date",
+            "description": "Invoice date"
+        },
+        "date_registre": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Date and time the item was registered"
+        },
+        "deadline": {
+            "type": "string",
+            "format": "date",
+            "description": "Invoice deadline"
+        },
+        "total": {
+            "type": "number",
+            "description": "Total amount"
+        },
+        "tax": {
+            "type": "number",
+            "description": "Tax amount"
+        },
+        "advance": {
+            "type": ["number", "null"],
+            "description": "Advance payment, if any"
+        },
+        "balance": {
+            "type": ["number", "null"],
+            "description": "Balance amount"
+        },
+        "comments": {
+            "type": ["string", "null"],
+            "description": "Comments"
+        },
+        "comments_private": {
+            "type": ["string", "null"],
+            "description": "Private comments"
+        },
+
+        "ce": {
+            "type": ["string", "null"],
+            "description": "Comunication extructured"
+        },
+        "code": {
+            "type": "string",
+            "description": "Unique code for the invoice"
+        },
+
+        "lines": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "expense_id": {
+                        "type": "integer",
+                        "description": "Identifier of the Invoice"
+                    },
+                    "quantity": {
+                        "type": "number",
+                        "description": "Quantity of the item"
+                    },
+                    "description": {
+                        "type": "string",
+                        "description": "Description of the item"
+                    },
+                    "price": {
+                        "type": "number",
+                        "description": "Price of the item"
+                    },
+                    "discounts": {
+                        "type": "number",
+                        "description": "Discount amount"
+                    },
+                    "discounts_mode": {
+                        "type": "string",
+                        "description": "Discount mode, e.g., percentage or fixed"
+                    },
+                    "tax": {
+                        "type": "int",
+                        "description": "Tax amount"
+                    }
+                }
+            }
+        }
+    },
+    "required": [
+        "id", "my_ref", "invoice_number", 
+        "provider_id", "date", "date_registre", "deadline", 
+        "total", "tax"
+    ]
+}
